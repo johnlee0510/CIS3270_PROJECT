@@ -17,25 +17,6 @@ public  class frame extends JPanel {
 
 	public static void main(String[] args) {
 
-		// Database connection
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
-			
-			String jdbcUrl = "jdbc:mysql://localhost:3306/java_project?useSSL=false";
-			 String userId = "root";
-			 String userPass = "java";
-			 
-			System.out.println("Connecting database...");
-			Connection conn = DriverManager.getConnection(jdbcUrl, userId,
-					userPass);
-			conn.close();
-			System.out.println("Database connected!");
-		} catch (SQLException | ClassNotFoundException e) {
-			System.out.println("Connection failed");
-			e.printStackTrace();
-		}
-
 		JFrame jf = new JFrame();
 		jf.setLayout(new BorderLayout());
 		jf.setSize(500, 150);
