@@ -79,6 +79,14 @@ public abstract class User implements DBconnector {
 		this.security_question = security_question;
 		this.admin_flag = admin_flag;
 	}
+	
+	public void getinformation(){
+		
+		
+		
+	}
+	
+	
 
 	@Override
 	public Connection DBconnect() throws SQLException {
