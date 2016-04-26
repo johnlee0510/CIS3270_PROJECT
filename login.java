@@ -9,7 +9,7 @@ import java.sql.*;
 
 import javax.swing.*;
 
-public  class frame extends JPanel {
+public  class login extends JPanel {
 
 	public ResultSet rs = null;
 	 
@@ -51,23 +51,30 @@ public  class frame extends JPanel {
 			public void actionPerformed(ActionEvent ex) {
 				try {
 					String jdbcUrl = "jdbc:mysql://localhost:3306/java_project?useSSL=false";
-					 String userId = "user";
+					 String userId = "root";
 					 String userPass = "java";
 					Connection conn = DriverManager.getConnection(jdbcUrl,
 							userId, userPass);
 					Statement stmt = conn.createStatement();
 					ResultSet rs = stmt
-							.executeQuery("SELECT username, password FROM customer WHERE username = '"
+							.executeQuery("SELECT username, password FROM user WHERE username = '"
 									+ username.getText() + "'");
 					
 					while (rs.next()) {
 						String rs_username = rs.getString("username");
 						String rs_password = rs.getString("password");
 						if (username.getText().equalsIgnoreCase(rs_username)
-								&& password.getText().equals(rs_password)) {
-							JOptionPane.showMessageDialog(null, "Hi "
+								&& password.getText().equals(rs_password)
+								&& rs_admin.equals("N")) {
+						JOptionPane.showMessageDialog(null, "Hi "
 									+ username.getText());
-						new	flight();
+							// new flight();
+						} else if (username.getText().equalsIgnoreCase(
+								rs_username)
+								&& password.getText().equals(rs_password)
+								&& rs_admin.equals("Y")) {
+							JOptionPane.showMessageDialog(null,
+									"Hi administrator");
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"invalid id or password");
@@ -77,7 +84,7 @@ public  class frame extends JPanel {
 					conn.close();
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null,
-							"your username or password is incorrect");
+							"Something is wrong");
 				}
 			}
 		});
