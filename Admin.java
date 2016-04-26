@@ -1,3 +1,4 @@
+// admin will be already created with admin_flag Y
 package project;
 
 public class Admin extends Customer {
