@@ -61,26 +61,22 @@ public class forgotPassword extends JFrame{
 					String jdbcUrl = "jdbc:mysql://localhost:3306/java_project?useSSL=false";
 					String userId = "root";
 					String userPass = "java";
-					System.out.println("0");
+					//System.out.println("0"); //testing out where it gives error
 					Connection conn = DriverManager.getConnection(jdbcUrl,
 							userId, userPass);
 					Statement stmt = conn.createStatement();
-					System.out.println("1");
-					System.out.println(user.getText().trim());
-					System.out.println(itemComboBox[itembox.getSelectedIndex()].trim());
-					System.out.println(security.getText().trim());
+					//System.out.println("1"); //testing out where it gives error
 					ResultSet rs = stmt.executeQuery("SELECT username, itemBox, "
 							+ "security_question "
 							+ "FROM user "
 							+ "WHERE username = '"
 							+ user.getText().trim()
 							+ "'");
-					System.out.println("2");
+					//System.out.println("2"); //testing out where it gives error
 					while (rs.next()) {
 						String rs_username = rs.getString("username");
 						String rs_security = rs.getString("security_question");
 						String rs_question = rs.getString("itemBox");
-						System.out.println("1");
 						if (user.getText().trim().equalsIgnoreCase(rs_username)
 								&& itemComboBox[itembox.getSelectedIndex()]
 										.trim().equalsIgnoreCase(rs_question)
