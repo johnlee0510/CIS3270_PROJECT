@@ -14,8 +14,11 @@ public  class login extends JPanel {
 	public ResultSet rs = null;
 	 
 	private static final long serialVersionUID = 1L;
+	public login(){
+		run();
+		}
 
-	public static void main(String[] args) {
+	public void run() {
 
 		JFrame jf = new JFrame();
 		jf.setLayout(new BorderLayout());
@@ -63,18 +66,23 @@ public  class login extends JPanel {
 					while (rs.next()) {
 						String rs_username = rs.getString("username");
 						String rs_password = rs.getString("password");
+						String rs_admin = rs.getString("admin_flag");
 						if (username.getText().equalsIgnoreCase(rs_username)
 								&& password.getText().equals(rs_password)
 								&& rs_admin.equals("N")) {
-						JOptionPane.showMessageDialog(null, "Hi "
+							JOptionPane.showMessageDialog(null, "Hi "
 									+ username.getText());
 							// new flight();
+							new MainMenu('a');
+							jf.dispose();
 						} else if (username.getText().equalsIgnoreCase(
 								rs_username)
 								&& password.getText().equals(rs_password)
 								&& rs_admin.equals("Y")) {
 							JOptionPane.showMessageDialog(null,
 									"Hi administrator");
+							
+						new	MainMenu("a");
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"invalid id or password");
