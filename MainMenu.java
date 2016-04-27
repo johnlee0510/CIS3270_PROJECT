@@ -18,36 +18,35 @@ private static final long serialVersionUID = 1L;
 	private JButton logout = new JButton("Logout");
 	private JButton userprofile = new JButton("Users profile");
 
-	public void customerRun(){
+	public void customerRun() {
 		main = new JFrame();
 		mainsource = new JPanel();
-		mainsource.setLayout(new GridLayout(5,1,5,5));
+		mainsource.setLayout(new GridLayout(5, 1, 5, 5));
 		mainsource.add(title_cus);
 		mainsource.add(listFlight);
 		mainsource.add(bookFlight);
 		mainsource.add(myFlight);
 		mainsource.add(logout);
 		mainsource.setVisible(true);
-		main.setSize(600,400);
+		main.setSize(600, 400);
 		main.add(mainsource);
 		main.setVisible(true);
-	
+
 		listFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ex) {
 				main.dispose();
 				new flight_info();
-		}
-});
-		
+			}
+		});
+
 		logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ex) {
-				JOptionPane.showMessageDialog(null,
-						"logged out- Good bye");
+				JOptionPane.showMessageDialog(null, "logged out- Good bye");
 				System.exit(0);
-				
+
 			}
-});
-		
+		});
+
 	}
 
 	public void adminRun() {
@@ -64,22 +63,21 @@ private static final long serialVersionUID = 1L;
 		main.setSize(600, 400);
 		main.add(mainsource);
 		main.setVisible(true);
-		
+
 		listFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ex) {
 				main.dispose();
 				new flight_info();
-		}
-});
+			}
+		});
 		logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ex) {
-				JOptionPane.showMessageDialog(null,
-						"logged out- Good bye");
+				JOptionPane.showMessageDialog(null, "logged out- Good bye");
 				System.exit(0);
-				
+
 			}
-});
-		
+		});
+
 	}
 
 	public MainMenu(char a) {
@@ -93,4 +91,3 @@ private static final long serialVersionUID = 1L;
 	}
 
 }
-
