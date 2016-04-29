@@ -1,0 +1,92 @@
+package edu.gsu.cis3270.project;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
+
+public class SplashScreen extends JWindow {
+
+	public SplashScreen(String fileName, Frame frame, int waitTime) { // creating the splashscreen object
+
+		super(frame);
+		
+		JPanel arranged = (JPanel) getContentPane();
+
+		Dimension sizeOfScreen = Toolkit.getDefaultToolkit().getScreenSize();
+
+		int w = 600, h = 400; //w is width and h is height. This centers the window
+
+		setBounds(((sizeOfScreen.width- w)/ 2), ((sizeOfScreen.height - w )/ 2), w, h);
+		
+		ImageIcon image = new ImageIcon(fileName);
+
+		JLabel label = new JLabel(image);
+		
+		JLabel words = new JLabel("JAVA AIRLINES");
+		
+		words.setFont(new Font("Lucida Handwriting", Font.BOLD, 14));
+		
+		arranged.add(label, BorderLayout.CENTER);
+
+		Color col = new Color(205, 100, 105, 105);
+		
+		arranged.setBorder(BorderFactory.createLineBorder(col, 5));
+
+		setVisible(true);
+		
+		final int p = waitTime;
+
+		final Runnable closerRunner = new Runnable() // allows splashscreen to disappear on its own
+		
+		{
+			public void run() {
+
+				setVisible(false);
+
+				dispose();
+			}
+		};
+
+		Runnable waitRunner = new Runnable()
+
+		{
+			public void run() {
+
+				try {
+
+					Thread.sleep(p);
+
+					SwingUtilities.invokeAndWait(closerRunner);
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+			}
+		};
+
+		setVisible(true);
+
+		Thread splashThread = new Thread(waitRunner, "SplashThread");
+
+		splashThread.start();
+	}
+
+
+	public static void main(String[] args) {
+		
+		Frame aframe = new Frame();
+		
+		SplashScreen sp = new SplashScreen("src/java-airlines.jpg", aframe, 10000); 
+	}
+}
